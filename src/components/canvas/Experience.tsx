@@ -1,24 +1,18 @@
-import { useRef } from 'react'
-import { useFrame } from '@react-three/fiber'
-import type { Mesh } from 'three'
+import { CameraRig } from './CameraRig'
+import { DESKTOP_TOP_Y, DesktopModel } from './DesktopModel'
+import { LamparaModel } from './LamparaModel'
+import { VasoModel } from './VasoModel'
 
 export function Experience() {
-  const cube = useRef<Mesh>(null)
-
-  useFrame((_, delta) => {
-    if (!cube.current) return
-    cube.current.rotation.x += delta * 0.5
-    cube.current.rotation.y += delta * 0.8
-  })
-
   return (
     <>
-      <ambientLight intensity={0.6} />
-      <directionalLight position={[3, 3, 3]} intensity={1.5} />
-      <mesh ref={cube}>
-        <boxGeometry args={[1.5, 1.5, 1.5]} />
-        <meshStandardMaterial color="#8b5cf6" />
-      </mesh>
+      <color attach="background" args={['#14141c']} />
+      <ambientLight intensity={0.8} />
+      <directionalLight position={[1.5, 3, 2]} intensity={2} />
+      <CameraRig />
+      <DesktopModel />
+      <LamparaModel position={[0.7, DESKTOP_TOP_Y, -0.22]} />
+      <VasoModel position={[-0.8, DESKTOP_TOP_Y, -0.15]} />
     </>
   )
 }

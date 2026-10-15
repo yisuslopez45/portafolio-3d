@@ -1,75 +1,67 @@
-# React + TypeScript + Vite
+# Portafolio 3D
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portafolio personal interactivo construido con **React Three Fiber**. Una escena 3D a pantalla completa, con contenido HTML superpuesto cuando haga falta.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vite.dev/)
+- [three.js](https://threejs.org/) + [@react-three/fiber](https://r3f.docs.pmnd.rs/)
+- [@react-three/drei](https://github.com/pmndrs/drei) (helpers: `useGLTF`, `Loader`…)
+- ESLint (typescript-eslint, react-hooks, react-refresh)
 
-## React Compiler
+## Scripts
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Comando           | Descripción                          |
+| ----------------- | ------------------------------------ |
+| `npm run dev`     | Servidor de desarrollo con HMR       |
+| `npm run build`   | Comprueba tipos y genera `dist/`     |
+| `npm run preview` | Sirve el build de producción         |
+| `npm run lint`    | Ejecuta ESLint                       |
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Estructura
 
 ```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+├── public/                 # Archivos estáticos servidos tal cual (favicon, etc.)
+├── src/
+│   ├── main.tsx            # Punto de entrada de React
+│   ├── App.tsx             # <Canvas> de R3F y composición general
+│   ├── index.css           # Estilos globales (canvas a pantalla completa)
+│   ├── components/
+│   │   ├── canvas/         # Componentes 3D (viven dentro del <Canvas>)
+│   │   └── ui/             # Componentes HTML/DOM (header, loader, overlays)
+│   ├── scenes/             # Secciones del portafolio (Hero, Proyectos, Contacto…)
+│   ├── hooks/              # Hooks reutilizables
+│   ├── data/               # Contenido en TS (proyectos, skills, enlaces)
+│   ├── utils/              # Funciones auxiliares
+│   ├── types/              # Tipos compartidos
+│   └── assets/
+│       ├── models/         # Modelos .glb / .gltf
+│       ├── textures/       # Texturas e imágenes
+│       └── fonts/          # Fuentes
+└── vite.config.ts          # Configuración de Vite (incluye el alias `@`)
 ```
+
+### Convenciones
+
+- **Alias `@`** apunta a `src/`: `import { Experience } from '@/components/canvas/Experience'`.
+- **`components/canvas`** solo contiene lo que se renderiza dentro del `<Canvas>`; **`components/ui`** lo que va en el DOM. No se mezclan.
+- **`scenes/`** agrupa componentes 3D por sección; cada escena compone piezas de `components/canvas`.
+- **Contenido separado del código**: textos y listas de proyectos van en `data/`, no dentro de los componentes.
+- **Assets**: los que se importan desde código van en `src/assets/`; los que se referencian por URL fija, en `public/`.
+- Las carpetas vacías contienen un `.gitkeep`; se puede borrar cuando tengan archivos.
+
+## Estado actual
+
+Concepto: **POV desktop**. La cámara es la vista de una persona sentada frente a un escritorio, y cada objeto sobre él lleva a una sección del portafolio.
+
+- `DesktopModel.tsx` carga `assets/models/desktop-model.glb` (el escritorio base, exportado en cm; se escala a metros).
+- `CameraRig.tsx` fija el punto de vista y añade un leve parallax con el mouse.
+- `Experience.tsx` compone luces, cámara y modelo.
+
+## Próximos pasos
+
+- Colocar objetos sobre el escritorio (monitor, teléfono, libreta…) como componentes en `components/canvas`.
+- Hacerlos interactivos: al hacer clic, la cámara se acerca y se muestra la sección (proyectos, sobre mí, contacto).
+- Definir los objetos y su contenido en `data/`.
+- Iluminación y ambiente definitivos.

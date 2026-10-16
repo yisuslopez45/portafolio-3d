@@ -2,8 +2,11 @@ import { CameraRig } from './CameraRig'
 import { ComputerModel } from './ComputerModel'
 import { DESKTOP_TOP_Y, DesktopModel } from './DesktopModel'
 import { LamparaModel } from './LamparaModel'
+import { LaptopModel } from './LaptopModel'
 import { RepisaModel } from './RepisaModel'
+import { SolderModel } from './SolderModel'
 import { VasoModel } from './VasoModel'
+import { VhsModel } from './VhsModel'
 
 export function Experience() {
   return (
@@ -13,10 +16,13 @@ export function Experience() {
       <directionalLight position={[1.5, 3, 2]} intensity={2} />
       <CameraRig />
       <DesktopModel />
-      <LamparaModel position={[0.7, DESKTOP_TOP_Y, -0.22]} />
+      <LamparaModel position={[0.4, DESKTOP_TOP_Y, -0.22]} />
       <VasoModel position={[-0.8, DESKTOP_TOP_Y, 0.20]} />
       <RepisaModel position={[0.1 , DESKTOP_TOP_Y + 0.4 , -0.15]} />
       <ComputerModel position={[-0.7, DESKTOP_TOP_Y, -0.15]} />
+      <SolderModel position={[0.1 , DESKTOP_TOP_Y , -0.15]} />
+      <VhsModel position={[-0.2 , DESKTOP_TOP_Y , -0.15]} />
+      <LaptopModel position={[0.7, DESKTOP_TOP_Y, 0.10]} />
     </>
   )
 }

@@ -22,16 +22,6 @@ type GLTFResult = GLTF & {
 
 const LAMPARA_SCALE = 0.01
 
-const MESHES = [
-  'foco_1',
-  'foco_2',
-  'foco_3',
-  'foco_4',
-  'lampara_1',
-  'lampara_2',
-  'lampara_3',
-] as const
-
 export function LamparaModel(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('/lampara-model.glb') as unknown as GLTFResult
 
@@ -42,12 +32,20 @@ export function LamparaModel(props: JSX.IntrinsicElements['group']) {
 
   return (
     <group scale={LAMPARA_SCALE} {...props} dispose={null}>
-      {MESHES.map((name) => (
-        <group key={name}>
-          <mesh geometry={nodes[name].geometry} material={toon} castShadow receiveShadow />
-          <mesh geometry={nodes[name].geometry} material={outline} />
-        </group>
-      ))}
+      <mesh geometry={nodes.foco_1.geometry} material={toon} castShadow receiveShadow />
+      <mesh geometry={nodes.foco_1.geometry} material={outline} />
+      <mesh geometry={nodes.foco_2.geometry} material={toon} castShadow receiveShadow />
+      <mesh geometry={nodes.foco_2.geometry} material={outline} />
+      <mesh geometry={nodes.foco_3.geometry} material={toon} castShadow receiveShadow />
+      <mesh geometry={nodes.foco_3.geometry} material={outline} />
+      <mesh geometry={nodes.foco_4.geometry} material={toon} castShadow receiveShadow />
+      <mesh geometry={nodes.foco_4.geometry} material={outline} />
+      <mesh geometry={nodes.lampara_1.geometry} material={toon} castShadow receiveShadow />
+      <mesh geometry={nodes.lampara_1.geometry} material={outline} />
+      <mesh geometry={nodes.lampara_2.geometry} material={toon} castShadow receiveShadow />
+      <mesh geometry={nodes.lampara_2.geometry} material={outline} />
+      <mesh geometry={nodes.lampara_3.geometry} material={toon} castShadow receiveShadow />
+      <mesh geometry={nodes.lampara_3.geometry} material={outline} />
     </group>
   )
 }

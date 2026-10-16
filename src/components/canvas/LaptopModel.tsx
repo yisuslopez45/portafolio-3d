@@ -24,24 +24,22 @@ export function LaptopModel(props: JSX.IntrinsicElements['group']) {
     const { toon, outline } = useMemo(() => createToonStyle(materials.Toon_Palette, 0.002), [materials])
 
     return (
-        <group  scale={0.6} rotation={[0, 310* (Math.PI / 180), 0]} {...props} dispose={null}>
+        <group  scale={1.2} rotation={[0, 310* (Math.PI / 180), 0]}  {...props} dispose={null}>
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.laptop_base.geometry}
                 material={toon}
             />
-
             <mesh
-                geometry={nodes.laptop_base.geometry}
-                material={outline}
-            />
-
+                 geometry={nodes.laptop_base.geometry}
+                 material={outline}
+             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.laptop_lid.geometry}
-                material={materials.Toon_Palette}>
+                material={toon}>
                 <mesh
                     castShadow
                     receiveShadow
@@ -50,6 +48,32 @@ export function LaptopModel(props: JSX.IntrinsicElements['group']) {
                 />
             </mesh>
         </group>
+        // <group  scale={0.6} rotation={[0, 310* (Math.PI / 180), 0]} {...props} dispose={null}>
+        //     <mesh
+        //         castShadow
+        //         receiveShadow
+        //         geometry={nodes.laptop_base.geometry}
+        //         material={toon}
+        //     />
+
+        //     <mesh
+        //         geometry={nodes.laptop_base.geometry}
+        //         material={outline}
+        //     />
+
+        //     <mesh
+        //         castShadow
+        //         receiveShadow
+        //         geometry={nodes.laptop_lid.geometry}
+        //         material={materials.Toon_Palette}>
+        //         <mesh
+        //             castShadow
+        //             receiveShadow
+        //             geometry={nodes.laptop_screen.geometry}
+        //             material={materials.Toon_Screen}
+        //         />
+        //     </mesh>
+        // </group>
     )
 }
 

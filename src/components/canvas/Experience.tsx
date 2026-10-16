@@ -3,7 +3,10 @@ import { ComputerModel } from './ComputerModel'
 import { DESKTOP_TOP_Y, DesktopModel } from './DesktopModel'
 import { LamparaModel } from './LamparaModel'
 import { LaptopModel } from './LaptopModel'
+import { PeripheralModel } from './PeripheralModel'
 import { RepisaModel } from './RepisaModel'
+import { ServerModel } from './ServerModel'
+import { ShelfModel } from './ShelfModel'
 import { SolderModel } from './SolderModel'
 import { VasoModel } from './VasoModel'
 import { VhsModel } from './VhsModel'
@@ -21,8 +24,12 @@ export function Experience() {
       <RepisaModel position={[0.1 , DESKTOP_TOP_Y + 0.4 , -0.15]} />
       <ComputerModel position={[-0.7, DESKTOP_TOP_Y, -0.15]} />
       <SolderModel position={[0.1 , DESKTOP_TOP_Y , -0.15]} />
-      <VhsModel position={[-0.2 , DESKTOP_TOP_Y , -0.15]} />
+      <VhsModel position={[-0.2 , DESKTOP_TOP_Y+0.1 , -0.15]} />
+      <ShelfModel position={[-0.2 , DESKTOP_TOP_Y , -0.15]} />
       <LaptopModel position={[0.7, DESKTOP_TOP_Y, 0.10]} />
+      <PeripheralModel position={[-0.2 , DESKTOP_TOP_Y , 0.2]} />
+      <ServerModel position={[0.1 , DESKTOP_TOP_Y + ( 0.5 + 0.08) , -0.15]} />
+
     </>
   )
 }

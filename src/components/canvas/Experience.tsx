@@ -1,3 +1,4 @@
+import { BookModel } from './BookModel'
 import { CameraRig } from './CameraRig'
 import { ComputerModel } from './ComputerModel'
 import { DESKTOP_TOP_Y, DesktopModel } from './DesktopModel'
@@ -29,6 +30,7 @@ export function Experience() {
       <LaptopModel position={[0.7, DESKTOP_TOP_Y, 0.10]} />
       <PeripheralModel position={[-0.2 , DESKTOP_TOP_Y , 0.2]} />
       <ServerModel position={[0.1 , DESKTOP_TOP_Y + ( 0.5 + 0.08) , -0.15]} />
+      <BookModel position={[-0.1 , DESKTOP_TOP_Y + ( 0.5 + 0.08) , -0.15]} />
 
     </>
   )

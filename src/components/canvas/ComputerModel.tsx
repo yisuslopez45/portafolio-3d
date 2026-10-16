@@ -38,6 +38,7 @@ export function ComputerModel(props: JSX.IntrinsicElements['group']) {
                 geometry={nodes.computer_body.geometry} 
                 material={outline} 
             />
+            
             <mesh
                 castShadow
                 receiveShadow

@@ -23,7 +23,7 @@ type GLTFResult = GLTF & {
 
 export function ComputerModel(props: JSX.IntrinsicElements['group']) {
     const { nodes, materials } = useGLTF('/computer-model.glb') as unknown as GLTFResult
-    const { toon, outline } = useMemo(() => createToonStyle(materials.Toon_Palette , 0.0002 ), [materials])
+    const { toon, outline } = useMemo(() => createToonStyle(materials.Toon_Palette , 0.002 ), [materials])
 
 
     return (

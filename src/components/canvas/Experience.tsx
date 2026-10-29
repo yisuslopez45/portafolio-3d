@@ -1,3 +1,5 @@
+import { EffectComposer, Outline, Selection, ToneMapping } from '@react-three/postprocessing'
+import { ToneMappingMode } from 'postprocessing'
 import { BookModel } from './BookModel'
 import { BulletinModel } from './BulletinModel'
 import { CameraRig } from './CameraRig'
@@ -23,7 +25,7 @@ const SHELF_TOP_Y = 0.5
 
 export function Experience() {
   return (
-    <>
+    <Selection>
       <color attach="background" args={['#14141c']} />
       <ambientLight intensity={0.8} />
       <directionalLight position={[1.5, 3, 2]} intensity={2} />
@@ -66,6 +68,19 @@ export function Experience() {
       <Interactive section="experience" position={[1.6, 1.4, 0.001]} rotation={[0, (3 * Math.PI) / 2, 0]} scale={0.7}>
         <BulletinModel />
       </Interactive>
-    </>
+
+      {/* Borde azul claro del objeto bajo el mouse (los <Interactive> hover se marcan con <Select>). */}
+      <EffectComposer autoClear={false}>
+        <Outline
+          visibleEdgeColor={0x7dd3fc}
+          hiddenEdgeColor={0x7dd3fc}
+          edgeStrength={3}
+          width={600}
+          blur
+        />
+        {/* El composer desactiva el tone mapping del Canvas; se repone para que los colores no cambien. */}
+        <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
+      </EffectComposer>
+    </Selection>
   )
 }

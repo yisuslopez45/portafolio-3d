@@ -2,6 +2,8 @@ import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { Loader } from '@react-three/drei'
 import { Experience } from '@/components/canvas/Experience'
+import { HoverLabel } from '@/components/ui/HoverLabel'
+import { InfoPanel } from '@/components/ui/InfoPanel'
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
         </Suspense>
       </Canvas>
       <Loader />
+      <HoverLabel />
+      <InfoPanel />
     </>
   )
 }

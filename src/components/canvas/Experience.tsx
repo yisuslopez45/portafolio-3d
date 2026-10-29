@@ -4,6 +4,7 @@ import { CameraRig } from './CameraRig'
 import { ComputerModel } from './ComputerModel'
 import { DESKTOP_TOP_Y, DesktopModel } from './DesktopModel'
 import { DesktopModelv2 } from './DesktopModelv2'
+import { Interactive } from './Interactive'
 import { LamparaModel } from './LamparaModel'
 import { LaptopModel } from './LaptopModel'
 import { PeripheralModel } from './PeripheralModel'
@@ -35,7 +36,9 @@ export function Experience() {
         {/* Fila trasera (pegada a la pared) */}
         <ComputerModel position={[-0.7, 0, BACK_Z]} />
         <ShelfModel position={[-0.2, 0, BACK_Z]} />
-        <VhsModel position={[-0.2, 0.1, BACK_Z]} />
+        <Interactive section="lofi" position={[-0.2, 0.1, BACK_Z]}>
+          <VhsModel />
+        </Interactive>
         <SolderModel position={[0.1, 0, BACK_Z]} />
         <LamparaModel position={[0.4, 0, -0.22]} />
         <RepisaModel position={[1, 0.4, BACK_Z]}   />
@@ -43,8 +46,12 @@ export function Experience() {
   
 
         {/* Fila delantera */}
-        <VasoModel position={[-0.8, 0, 0.2]} />
-        <PeripheralModel position={[-0.2, 0, 0.2]} />
+        <Interactive section="about" position={[-0.8, 0, 0.2]}>
+          <VasoModel />
+        </Interactive>
+        <Interactive section="projects" position={[-0.2, 0, 0.2]}>
+          <PeripheralModel />
+        </Interactive>
         <LaptopModel position={[0.7, 0, 0.1]} />
 
       </group>
@@ -56,7 +63,9 @@ export function Experience() {
       </group>
 
 
-      <BulletinModel position={[1.6, 1.4, 0.001]} rotation={[0,  3*Math.PI/2  , 0]} scale={0.7} />
+      <Interactive section="experience" position={[1.6, 1.4, 0.001]} rotation={[0, (3 * Math.PI) / 2, 0]} scale={0.7}>
+        <BulletinModel />
+      </Interactive>
     </>
   )
 }

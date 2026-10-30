@@ -8,6 +8,7 @@ import { CameraRig } from './CameraRig'
 import { ComputerModel } from './ComputerModel'
 import { DESKTOP_TOP_Y, DesktopModel } from './DesktopModel'
 import { DesktopModelv2 } from './DesktopModelv2'
+import { DeskMatModel } from './DeskMatModel'
 import { EstornilladorModel } from './EstornilladorModel'
 import { Interactive } from './Interactive'
 import { LamparaModel } from './LamparaModel'
@@ -22,6 +23,7 @@ import { SolderModel } from './SolderModel'
 import { VasoModel } from './VasoModel'
 import { VhsModel } from './VhsModel'
 import { Cactus1Model } from './Cactus1Model'
+import { Cactus2Model } from './Cactus2Model'
 import { Books1Model } from './Books1Model'
 import { Books2Model } from './Books2Model'
 
@@ -30,14 +32,16 @@ import { Books2Model } from './Books2Model'
 const BACK_Z = -0.15
 // Z de la fila delantera (periféricos y objetos sueltos).
 const FRONT_Z = 0.2
-// Chips NE555 sueltos entre la repisita del VHS y el teclado: [x, z, giro en Y].
+// Chips NE555 sueltos entre la repisita del VHS y la alfombrilla (que empieza en x=-0.45): [x, z, giro en Y].
 const CHIPS: [number, number, number][] = [
-  [-0.52, 0.05, 0.3],
-  [-0.45, 0.09, -0.8],
-  [-0.38, 0.04, 1.2],
-  [-0.33, 0.11, 0.1],
-  [-0.49, 0.14, -0.4],
+  [-0.62, 0.02, 0.3],
+  [-0.56, 0.06, -0.8],
+  [-0.5, 0.01, 1.2],
+  [-0.49, 0.08, 0.1],
+  [-0.6, 0.09, -0.4],
 ]
+// Grosor de la alfombrilla del escritorio (los periféricos se apoyan encima).
+const DESK_MAT_HEIGHT = 0.004
 // Altura del estante respecto a la cubierta del escritorio.
 const SHELF_TOP_Y = 0.5
 
@@ -62,7 +66,8 @@ export function Experience() {
         </Interactive>
         {/* rotation 0 anula el giro de 45° que trae el modelo, para que la pantalla mire de frente (ocupa x de -0.23 a 0.23). */}
         <ComputerModel position={[0, 0, BACK_Z]} rotation={[0, 0, 0]} />
-        <LamparaModel position={[0.42, 0, BACK_Z]} />
+        {/* La pantalla de la lámpara mira hacia +z; girada hacia la izquierda para alumbrar el teclado. */}
+        <LamparaModel position={[0.42, 0, BACK_Z]} rotation={[0, -0.7, 0]} />
         {/* Repisa acortada en X (el grupo escala encima del scale interno del modelo). */}
         <group position={[-1, 0.2, BACK_Z]} scale={[0.7, 1, 1]}>
           <RepisaModel  position={[0, 0.6, 0]} />
@@ -76,17 +81,22 @@ export function Experience() {
           <VasoModel />
         </Interactive>
         {/* Herramientas sueltas (donde la referencia tiene el cuaderno), un poco giradas para que no se vean alineadas. */}
-        <MultimeterModel position={[-0.65, 0, 0.27]} rotation={[0, -0.5, 0]} scale={1.1} />
-        <EstornilladorModel position={[-0.45, 0, 0.33]} rotation={[0, 0.35, 0]} scale={1.3} />
+        {/* Fuera de la alfombrilla (x < -0.45); el destornillador más girado para que no la invada. */}
+        <MultimeterModel position={[-0.75, 0, 0.3]} rotation={[0, -0.5, 0]} scale={1.1} />
+        <EstornilladorModel position={[-0.57, 0, 0.27]} rotation={[0, 1.2, 0]} scale={1.3} />
         {CHIPS.map(([x, z, rotY]) => (
           <Chips1Model key={`${x},${z}`} position={[x, 0, z]} rotation={[0, rotY, 0]} scale={3} />
         ))}
-        {/* Joystick + teclado + ratón (~0.51 m de ancho), centrados bajo la PC. */}
-        <Interactive section="projects" position={[0, 0, FRONT_Z]}>
+        {/* Alfombrilla bajo los periféricos (0.9 x 0.38, 4 mm de grosor). */}
+        <DeskMatModel position={[0, 0, FRONT_Z]} />
+        {/* Joystick + teclado + ratón (~0.51 m de ancho), centrados bajo la PC; elevados sobre la alfombrilla. */}
+        <Interactive section="projects" position={[0, DESK_MAT_HEIGHT, FRONT_Z]}>
           <PeripheralModel />
         </Interactive>
         {/* Laptop a la derecha, junto a la lámpara. */}
         <LaptopModel position={[0.8, 0, 0]} />
+        {/* Cactus en la esquina delantera derecha (la cubierta llega hasta x≈1.5). */}
+        <Cactus2Model position={[1, 0.02, 0.28]} scale={1.5} />
 
       </group>
 

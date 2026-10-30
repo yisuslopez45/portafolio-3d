@@ -1,4 +1,4 @@
-export type SectionId = 'projects' | 'lofi' | 'about' | 'experience'
+export type SectionId = 'projects' | 'lofi' | 'about' | 'experience' | 'downloads'
 
 export interface SectionConfig {
   id: SectionId
@@ -42,24 +42,14 @@ export const SECTIONS: Record<SectionId, SectionConfig> = {
     cameraOffset: [-0.9, 0, 0],
     sideShift: 0.45,
   },
+  downloads: {
+    id: 'downloads',
+    label: 'Descargas',
+    title: 'Descargas',
+    // El libro está en el nicho de la pared izquierda mirando hacia +x, así que la cámara se coloca a su derecha.
+    cameraOffset: [0.9, 0.1, 0],
+    sideShift: 0.45,
+  },
 }
 
-// TODO: reemplaza estos textos de ejemplo por tu información real.
-export const CONTENT = {
-  about: {
-    name: 'Tu nombre — Desarrollador Full Stack',
-    bio: 'Escribe aquí una breve presentación: quién eres, qué te apasiona y qué tipo de proyectos disfrutas construyendo.',
-    skills: ['React', 'TypeScript', 'Three.js', 'Node.js'],
-  },
-  projects: [
-    { name: 'Proyecto uno', description: 'Descripción corta del proyecto y la tecnología usada.', url: '#' },
-    { name: 'Proyecto dos', description: 'Descripción corta del proyecto y la tecnología usada.', url: '#' },
-    { name: 'Proyecto tres', description: 'Descripción corta del proyecto y la tecnología usada.', url: '#' },
-  ],
-  experience: [
-    { role: 'Cargo actual', company: 'Empresa', period: '2024 — Actualidad', description: 'Qué haces y qué lograste.' },
-    { role: 'Cargo anterior', company: 'Empresa', period: '2022 — 2024', description: 'Qué hacías y qué lograste.' },
-  ],
-  // ID del video o directo de YouTube (el de este ejemplo es el directo de Lofi Girl).
-  lofiVideoId: 'https://www.youtube.com/watch?v=BYTxPFj44uo&list=RDBYTxPFj44uo&start_radio=1',
-}
+// El contenido de cada sección vive en su propio componente: ver src/components/sections/.

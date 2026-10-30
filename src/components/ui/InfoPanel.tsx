@@ -1,61 +1,9 @@
 import { useState } from 'react'
-import { CONTENT, SECTIONS } from '@/data/sections'
+import { SECTIONS } from '@/data/sections'
 import type { SectionId } from '@/data/sections'
+import { SECTION_COMPONENTS } from '@/components/sections'
 import { useFocusStore } from '@/hooks/useFocusStore'
 import { useEscapeKey } from '@/hooks/useEscapeKey'
-
-function SectionContent({ section }: { section: SectionId }) {
-  switch (section) {
-    case 'about':
-      return (
-        <>
-          <h3>{CONTENT.about.name}</h3>
-          <p>{CONTENT.about.bio}</p>
-          <ul className="chips">
-            {CONTENT.about.skills.map((skill) => (
-              <li key={skill}>{skill}</li>
-            ))}
-          </ul>
-        </>
-      )
-    case 'projects':
-      return (
-        <ul className="cards">
-          {CONTENT.projects.map((p) => (
-            <li key={p.name}>
-              <a href={p.url} target="_blank" rel="noreferrer">
-                {p.name}
-              </a>
-              <p>{p.description}</p>
-            </li>
-          ))}
-        </ul>
-      )
-    case 'experience':
-      return (
-        <ul className="cards">
-          {CONTENT.experience.map((job) => (
-            <li key={job.role + job.period}>
-              <strong>{job.role}</strong> · {job.company}
-              <small>{job.period}</small>
-              <p>{job.description}</p>
-            </li>
-          ))}
-        </ul>
-      )
-    case 'lofi':
-      return (
-        <div className="video">
-          <iframe
-            src={`https://www.youtube-nocookie.com/embed/${CONTENT.lofiVideoId}?autoplay=1`}
-            title="Lofi en YouTube"
-            allow="autoplay; encrypted-media; picture-in-picture"
-            allowFullScreen
-          />
-        </div>
-      )
-  }
-}
 
 export function InfoPanel() {
   const active = useFocusStore((s) => s.active)
@@ -64,10 +12,11 @@ export function InfoPanel() {
   if (active && active !== last) setLast(active)
 
   const close = useFocusStore((s) => s.blur)
+  const Content = last ? SECTION_COMPONENTS[last] : null
   useEscapeKey(close, active !== null)
 
   return (
-    <aside className={`info-panel${active ? ' open' : ''}`} aria-hidden={!active}>
+    <aside className={`info-panel${active ? ' open' : ''}`} data-section={last ?? undefined} aria-hidden={!active}>
       {last && (
         <>
           <header>
@@ -76,7 +25,7 @@ export function InfoPanel() {
               ×
             </button>
           </header>
-          <div className="body">{active && <SectionContent section={last} />}</div>
+          <div className="body">{active && Content && <Content />}</div>
         </>
       )}
     </aside>

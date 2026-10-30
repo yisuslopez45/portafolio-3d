@@ -37,15 +37,17 @@ export function Experience() {
       <group position={[0, DESKTOP_TOP_Y, 0]}>
         {/* Fila trasera (pegada a la pared) */}
         <ComputerModel position={[-0.7, 0, BACK_Z]} />
-        <ShelfModel position={[-0.2, 0, BACK_Z]} />
+        <ShelfModel  position={[-0.2, 0, BACK_Z]}  />
+
         <Interactive section="lofi" position={[-0.2, 0.1, BACK_Z]}>
           <VhsModel />
         </Interactive>
         <SolderModel position={[0.1, 0, BACK_Z]} />
         <LamparaModel position={[0.4, 0, -0.22]} />
-        <RepisaModel position={[1, 0.4, BACK_Z]}   />
-
-  
+        {/* Repisa acortada en X (el grupo escala encima del scale interno del modelo). */}
+        <group position={[-1, 0.2, BACK_Z]} scale={[0.7, 1, 1]}>
+          <RepisaModel  position={[0, 0.6, 0]} />
+        </group>
 
         {/* Fila delantera */}
         <Interactive section="about" position={[-0.8, 0, 0.2]}>
@@ -60,7 +62,10 @@ export function Experience() {
 
       {/* Nicho de la pared izquierda: x de -1.9 (fondo) a -1.6 (boca), z de -0.4 a 0.4, base del estante en y=1.31. */}
       <group position={[-1.75, 1.31, 0]}>
-        <ServerModel position={[0, 0, 0.15]} rotation={[0, Math.PI / 2, 0]} />
+
+        <Interactive section="downloads" position={[0, 0, 0.15]} >
+          <ServerModel  rotation={[0, Math.PI / 2, 0]} />
+        </Interactive>
         <BookModel position={[0, 0, -0.15]} scale={0.85} />
       </group>
 

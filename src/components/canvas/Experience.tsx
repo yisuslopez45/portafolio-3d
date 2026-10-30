@@ -21,6 +21,7 @@ import { ServerModel } from './ServerModel'
 import { ShelfModel } from './ShelfModel'
 import { SolderModel } from './SolderModel'
 import { VasoModel } from './VasoModel'
+import { SteamEffect } from './SteamEffect'
 import { VhsModel } from './VhsModel'
 import { Cactus1Model } from './Cactus1Model'
 import { Cactus2Model } from './Cactus2Model'
@@ -84,6 +85,8 @@ export function Experience() {
         <Interactive section="about" position={[-0.90, 0, FRONT_Z]}>
           <VasoModel />
         </Interactive>
+        {/* Vapor saliendo del café (la boca del vaso está a 0.177). Fuera del <Interactive> para que el borde del hover no lo marque. */}
+        <SteamEffect position={[-0.9, 0.17, FRONT_Z]} />
         {/* Herramientas sueltas (donde la referencia tiene el cuaderno), un poco giradas para que no se vean alineadas. */}
         {/* Fuera de la alfombrilla (x < -0.45); el destornillador más girado para que no la invada. */}
         <MultimeterModel position={[-0.75, 0, 0.3]} rotation={[0, -0.5, 0]} scale={1.1} />

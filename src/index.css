@@ -294,11 +294,26 @@ body {
   box-shadow: var(--pop);
 }
 .info-panel iframe {
+  display: block;
   width: 100%;
   height: 100%;
+  /* El video del panel no se controla desde el iframe: solo con la tecla del VHS. */
+  pointer-events: none;
   border: var(--line);
   border-radius: 10px;
   background: var(--ink);
+}
+
+/* Reproductor de YouTube de la música de fondo: fuera de la vista (display:none impediría que suene). */
+.background-music {
+  position: fixed;
+  left: -10px;
+  top: -10px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 
 @media (max-width: 720px) {

@@ -4,6 +4,7 @@ import { Loader } from '@react-three/drei'
 import { Experience } from '@/components/canvas/Experience'
 import { HoverLabel } from '@/components/ui/HoverLabel'
 import { InfoPanel } from '@/components/ui/InfoPanel'
+import { BackgroundMusic } from '@/components/ui/BackgroundMusic'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Loader />
       <HoverLabel />
       <InfoPanel />
+      <BackgroundMusic />
     </>
   )
 }

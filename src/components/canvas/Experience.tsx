@@ -1,5 +1,6 @@
 import { EffectComposer, Outline, Selection, ToneMapping } from '@react-three/postprocessing'
 import { ToneMappingMode } from 'postprocessing'
+import { BluePrintModel } from './BluePrintModel'
 import { BookModel } from './BookModel'
 import { BulletinModel } from './BulletinModel'
 import { CameraRig } from './CameraRig'
@@ -17,6 +18,9 @@ import { ShelfModel } from './ShelfModel'
 import { SolderModel } from './SolderModel'
 import { VasoModel } from './VasoModel'
 import { VhsModel } from './VhsModel'
+import { Cactus1Model } from './Cactus1Model'
+import { Books1Model } from './Books1Model'
+import { Books2Model } from './Books2Model'
 
 // Z de la fila trasera del escritorio (hacia la pared).
 const BACK_Z = -0.15
@@ -48,6 +52,9 @@ export function Experience() {
         <group position={[-1, 0.2, BACK_Z]} scale={[0.7, 1, 1]}>
           <RepisaModel  position={[0, 0.6, 0]} />
         </group>
+        {/* Sobre la tabla de la repisa: 0.2 (grupo) + 0.6 (modelo) + 0.18 (altura de la tabla en el GLB) = 0.98.
+            Fuera del grupo escalado para no aplastar los libros; escala 0.75 para caber en los ~19 cm de fondo. */}
+        <Books2Model position={[-1, 0.98, BACK_Z]} scale={0.75} />
 
         {/* Fila delantera */}
         <Interactive section="about" position={[-0.8, 0, 0.2]}>
@@ -69,6 +76,17 @@ export function Experience() {
         <BookModel position={[0, 0, -0.15]} scale={0.85} />
       </group>
 
+
+      {/* Hueco inferior del mismo nicho: base en y=0.9, 0.8 de largo (z de -0.4 a 0.4).
+          Girado 90° para mirar a la habitación; en este grupo x va de izquierda (-) a derecha (+) vista desde la sala. */}
+      <group position={[-1.75, 0.9, 0]} rotation={[0, Math.PI / 2, 0]}>
+        <Books1Model position={[-0.21, 0, 0]} scale={1} />
+        <Cactus1Model position={[0.2, 0, 0]} scale={1.5} />
+      </group>
+
+
+      {/* Pared frontal (z=-0.5), entre el borde derecho de la ventana (x=0.95) y la pared derecha (x≈1.57). */}
+      <BluePrintModel position={[1.26, 1.39, -0.5]} scale={0.65} />
 
       <Interactive section="experience" position={[1.6, 1.4, 0.001]} rotation={[0, (3 * Math.PI) / 2, 0]} scale={0.7}>
         <BulletinModel />

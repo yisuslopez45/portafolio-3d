@@ -14,11 +14,13 @@ function createGradientMap() {
   return tex
 }
 
-// Material toon que conserva la textura bakeada del material original, más su contorno.
+// Material toon que conserva la textura bakeada del material original (o su color, si no tiene textura), más su contorno.
 // `thickness` va en las unidades del propio GLB: usa 0.12 para modelos en cm y 0.0012 para modelos en metros.
 export function createToonStyle(baked: THREE.MeshStandardMaterial, thickness = OUTLINE_THICKNESS) {
   const toon = new THREE.MeshToonMaterial({
     map: baked.map,
+    // Sin textura, el color plano del material es lo único que lo distingue (si no, saldría blanco).
+    ...(baked.map ? {} : { color: baked.color }),
     gradientMap: createGradientMap(),
     side: THREE.DoubleSide,
   })

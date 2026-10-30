@@ -5,6 +5,7 @@ import { Experience } from '@/components/canvas/Experience'
 import { HoverLabel } from '@/components/ui/HoverLabel'
 import { InfoPanel } from '@/components/ui/InfoPanel'
 import { BackgroundMusic } from '@/components/ui/BackgroundMusic'
+import { ZoomBackButton } from '@/components/ui/ZoomBackButton'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Loader />
       <HoverLabel />
       <InfoPanel />
+      <ZoomBackButton />
       <BackgroundMusic />
     </>
   )

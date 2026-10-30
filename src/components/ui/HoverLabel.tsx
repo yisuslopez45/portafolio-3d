@@ -11,7 +11,7 @@ export function HoverLabel() {
   // La tecla de play del VHS tiene prioridad sobre el VHS que la contiene.
   const text = keyHovered
     ? `Música · clic para ${playing ? 'pausar' : 'reproducir'}`
-    : hovered && `${SECTIONS[hovered].label} · clic para ver`
+    : hovered && `${SECTIONS[hovered].label} · clic para ${SECTIONS[hovered].title ? 'ver' : 'acercar'}`
 
   return <div className={`hover-label${text ? ' visible' : ''}`}>{text}</div>
 }

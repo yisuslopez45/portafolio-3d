@@ -58,7 +58,9 @@ export function Experience() {
       {/* Todo lo de la cubierta del escritorio: las posiciones son relativas a ella (y=0 es la cubierta). */}
       <group position={[0, DESKTOP_TOP_Y, 0]}>
         {/* Fila trasera (pegada a la pared), de izquierda a derecha. La PC retro va al centro, frente a la cámara (x=0). */}
-        <SolderModel position={[-1.1, 0, BACK_Z]} />
+        <Interactive section="solder" position={[-1.1, 0, BACK_Z]}>
+          <SolderModel />
+        </Interactive>
         {/* Repisita con el VHS encima, a la izquierda de la PC. */}
         <ShelfModel position={[-0.6, 0, BACK_Z]} />
         <Interactive section="lofi" position={[-0.6, 0.1, BACK_Z]}>
@@ -67,7 +69,9 @@ export function Experience() {
         {/* rotation 0 anula el giro de 45° que trae el modelo, para que la pantalla mire de frente (ocupa x de -0.23 a 0.23). */}
         <ComputerModel position={[0, 0, BACK_Z]} rotation={[0, 0, 0]} />
         {/* La pantalla de la lámpara mira hacia +z; girada hacia la izquierda para alumbrar el teclado. */}
-        <LamparaModel position={[0.42, 0, BACK_Z]} rotation={[0, -0.7, 0]} />
+        <Interactive section="lamp" position={[0.42, 0, BACK_Z]} rotation={[0, -0.7, 0]}>
+          <LamparaModel />
+        </Interactive>
         {/* Repisa acortada en X (el grupo escala encima del scale interno del modelo). */}
         <group position={[-1, 0.2, BACK_Z]} scale={[0.7, 1, 1]}>
           <RepisaModel  position={[0, 0.6, 0]} />

@@ -1,11 +1,11 @@
-export type SectionId = 'projects' | 'lofi' | 'about' | 'experience' | 'downloads'
+export type SectionId = 'projects' | 'lofi' | 'about' | 'experience' | 'downloads' | 'lamp' | 'solder'
 
 export interface SectionConfig {
   id: SectionId
   /** Texto corto que aparece al pasar el mouse por el objeto. */
   label: string
-  /** Título del panel de información. */
-  title: string
+  /** Título del panel de información. Sin título la sección es solo zoom: no abre panel. */
+  title?: string
   /** Dónde queda la cámara respecto al centro del objeto al hacer zoom (metros, ejes del mundo). */
   cameraOffset: [number, number, number]
   /** Cuánto se desplaza el objeto hacia la izquierda de la pantalla para dejar sitio al panel (0 = centrado). */
@@ -49,6 +49,19 @@ export const SECTIONS: Record<SectionId, SectionConfig> = {
     // El libro está en el nicho de la pared izquierda mirando hacia +x, así que la cámara se coloca a su derecha.
     cameraOffset: [0.9, 0.1, 0],
     sideShift: 0.45,
+  },
+  // Solo zoom (sin panel): el objeto queda centrado.
+  lamp: {
+    id: 'lamp',
+    label: 'Lámpara',
+    cameraOffset: [0, 0.15, 0.5],
+    sideShift: 0,
+  },
+  solder: {
+    id: 'solder',
+    label: 'Estación de soldadura',
+    cameraOffset: [0, 0.25, 0.4],
+    sideShift: 0,
   },
 }
 

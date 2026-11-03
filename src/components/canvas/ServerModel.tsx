@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
 import type { JSX } from 'react/jsx-runtime'
-import { useMemo, useRef } from 'react'
+import { useMemo } from 'react'
 import { createToonStyle } from './toonStyle'
 import { useFrame } from '@react-three/fiber'
 
@@ -62,7 +62,7 @@ export function ServerModel(props: JSX.IntrinsicElements['group']) {
                 geometry={nodes.server.geometry}
                 material={outline}
             />
-            { ledMaterials.map((mat, i)=>(
+            { ledMaterials.map((_, i)=>(
                 <mesh
                     castShadow
                     receiveShadow

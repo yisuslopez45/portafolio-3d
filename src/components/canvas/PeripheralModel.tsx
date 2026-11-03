@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import React, { useMemo, useRef } from 'react'
+import { useMemo } from 'react'
 import { useGLTF } from '@react-three/drei'
 import type { GLTF } from 'three-stdlib'
 import type { JSX } from 'react/jsx-runtime'

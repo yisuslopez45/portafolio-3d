@@ -6,7 +6,7 @@ import { Chips1Model } from './Chips1Model'
 import { BulletinModel } from './BulletinModel'
 import { CameraRig } from './CameraRig'
 import { ComputerModel } from './ComputerModel'
-import { DESKTOP_TOP_Y, DesktopModel } from './DesktopModel'
+import { DESKTOP_TOP_Y } from './DesktopModel'
 import { DesktopModelv2 } from './DesktopModelv2'
 import { DeskMatModel } from './DeskMatModel'
 import { EstornilladorModel } from './EstornilladorModel'
@@ -44,8 +44,7 @@ const CHIPS: [number, number, number][] = [
 ]
 // Grosor de la alfombrilla del escritorio (los periféricos se apoyan encima).
 const DESK_MAT_HEIGHT = 0.004
-// Altura del estante respecto a la cubierta del escritorio.
-const SHELF_TOP_Y = 0.5
+
 
 export function Experience() {
   return (

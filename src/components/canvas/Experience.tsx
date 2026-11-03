@@ -23,6 +23,7 @@ import { SolderModel } from './SolderModel'
 import { VasoModel } from './VasoModel'
 import { SteamEffect } from './SteamEffect'
 import { VhsModel } from './VhsModel'
+import { WindowBackground } from './WindowBackground'
 import { Cactus1Model } from './Cactus1Model'
 import { Cactus2Model } from './Cactus2Model'
 import { Books1Model } from './Books1Model'
@@ -54,6 +55,7 @@ export function Experience() {
       <directionalLight position={[1.5, 3, 2]} intensity={2} />
       <CameraRig />
       <RoomModel />
+      <WindowBackground />
       {/* <DesktopModel /> */}
       <DesktopModelv2 />
       {/* Todo lo de la cubierta del escritorio: las posiciones son relativas a ella (y=0 es la cubierta). */}
